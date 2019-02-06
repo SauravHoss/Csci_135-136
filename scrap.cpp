@@ -11,9 +11,9 @@ using namespace std;
 int main ()
 {
   int sum;
-  cin >> sum;  // Read the first value as the sum.
-  char opr;         // Operator character
-  int  value;       // New value or term.
+  cin >> sum;
+  char opr;
+  int  value;
   while (cin >> opr >> value)
   {    
     if(opr == '+')
