@@ -1,6 +1,6 @@
 /*
 Author: Saurav Hossain
-Assignment: Lab 2A
+Assignment: Lab 2D
 Function: Write a program which uses an array of ints to compute and print all Fibonacci numbers from F(0) to F(59).
 Date: 02/03/19
 Instructor: Panda
