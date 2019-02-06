@@ -10,22 +10,21 @@ File submission name: calc.cpp
 using namespace std;
 int main ()
 {
-  int sum;
-  cin >> sum;
-  char opr;
-  int  value;
-  while (cin >> opr >> value)
+  int x,v;
+  cin >> x;
+  char o;
+  while (cin >> o >> v)
   {    
-    if(opr == '+')
+    if(o == '+')
     { 
-      sum += value;
+      x += v;
       break;
     }
     else
     {
-      sum -= value;
+      x -= v;
       break;
     }
   }
-  cout << sum;
+  cout << x;
 }
