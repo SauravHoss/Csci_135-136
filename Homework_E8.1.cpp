@@ -27,11 +27,8 @@ int main ()
 	ifstream inFile; 
 	inFile.open("hello.txt");
 	
-	string s;	
-	
-	while(!inFile.eof())
-	{
-		inFile >> s;
-		cout << s;
-	}
+	string s,v;	
+
+	inFile >> s >> v;
+	cout << s << " " << v;	
 }
