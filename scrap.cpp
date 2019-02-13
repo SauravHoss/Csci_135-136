@@ -30,3 +30,29 @@ int main ()
 	x = 0;
   }
 }
+
+
+#include <iostream>
+using namespace std;
+int main ()
+{
+  int x,v;
+  cin >> x;
+  char o;
+
+  while (cin >> o)
+  { 
+  	while(cin >> v)
+  	{   
+    	if(o == '+')
+   	 	{ 
+    	  x += v;	
+    	}
+    	else if (o == '-')
+    	{
+      		x -= v;
+    	}
+    	cout << x;
+  	}
+  }
+}
