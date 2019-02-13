@@ -15,16 +15,18 @@ int main ()
   char o;
   while (cin >> o >> v)
   {    
-    if(o == '+')
-    { 
-      x += v;
-      break;
-    }
-    else
+    while( o != ';')
     {
-      x -= v;
-      break;
+    	if(o == '+')
+    	{ 
+      		x += v;	
+    	}
+    	else if( o == '-')
+    	{
+      		x -= v;
+    	}
     }
+	cout << x << endl;
+	x = 0;
   }
-  cout << x;
 }
