@@ -5,7 +5,6 @@ Function: Write a program that finds the minimum and maximum storage in East bas
 Date: 02/17/19
 Instructor: Panda
 File submission name: minmax.cpp
-WHY THE FUCK U WNAT ANOTEHR COMMENT
 */
 #include <iostream>
 #include <fstream>
