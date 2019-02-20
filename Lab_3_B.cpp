@@ -19,7 +19,7 @@ int main()
 	if (fin.fail())
 	{
    		cerr << "File cannot be opened for reading."<< endl;
-    	exit(1);
+    		exit(1);
 	}
 	
   	string junk, date;
@@ -32,12 +32,12 @@ int main()
     	fin.ignore(INT_MAX, '\n');
    		if(eastSt <= min)
    		{
-      		min = eastSt;
-    	}
+      			min = eastSt;
+    		}
    		if(eastSt >= max)
    		{
-      		max = eastSt;
-    	}
+      			max = eastSt;
+    		}
   	}
  	cout << "minimum storage in East Basin: " << min << endl << "maximum storage in East Basin: " << max << endl;
   	fin.close();
