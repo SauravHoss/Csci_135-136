@@ -16,12 +16,12 @@ int main()
   cin >> x;
 	for(int i = x; i > 0; i--)
 	{
-    for(int u = 0; u < x - i; u++)
-      cout << " ";
-      for(int u = 1; u <= i; u++)
-		  {
-			  cout << "*";
-		  }
-		  cout << endl;
+		for(int u = 0; u < x - i; u++)
+     		cout << " ";
+      			for(int u = 1; u <= i; u++)
+		 	 {
+				cout << "*";
+			 }
+		cout << endl;
 	}
 }
