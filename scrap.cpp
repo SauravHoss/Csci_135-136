@@ -1,58 +1,25 @@
 /*
 Author: Saurav Hossain
-Assignment: Project 1B
-Function: Write a program that reads from the cin a sequence of one or more non-negative integers written to be added or subtracted. Space characters can be anywhere in the input. After the input ends (end-of-file is reached), the program should compute and print the result of the input summation.
-Date: 02/03/19
-Instructor: Panda
-File submission name: calc.cpp
+Date: 02/26/19
+Prompt: Write a function that computes the balance of a bank account with a given initial balance and interest rate, after a given number of years. Assume interest is compounded yearly.
 */
 #include <iostream>
+#include <stdio.h>
+#include <math.h>
 using namespace std;
-int main ()
+
+int main() 
 {
-  int x,v;
-  cin >> x;
-  char o;
-  while (cin >> o >> v)
-  {    
-    while( o != ';')
-    {
-    	if(o == '+')
-    	{ 
-      		x += v;	
-    	}
-    	else if( o == '-')
-    	{
-      		x -= v;
-    	}
-    }
-	cout << x << endl;
-	x = 0;
-  }
-}
+  double x, y, z, a;
+  cin >> x >> y >> z;
 
+  a = x * pow((1 + (y/100)), z);
+  
+  cout << a << endl;
 
-#include <iostream>
-using namespace std;
-int main ()
-{
-  int x,v;
-  cin >> x;
-  char o;
+  char c[64];
+  sprintf(c, "%.2lf\n", a);
+  double s = atof(c);
 
-  while (cin >> o)
-  { 
-  	while(cin >> v)
-  	{   
-    	if(o == '+')
-   	 	{ 
-    	  x += v;	
-    	}
-    	else if (o == '-')
-    	{
-      		x -= v;
-    	}
-    	cout << x;
-  	}
-  }
+  cout << s;
 }
