@@ -6,7 +6,6 @@ Date: 02/22/19
 Instructor: Panda
 File submission name: checkerboard.cpp
 */
-
 #include <iostream>
 using namespace std;
 int main() 
@@ -19,7 +18,12 @@ int main()
   {
     for(int u = 0; u < x; u++)
     {
-      
+      if(((i + u) % 2) == 0)
+      {
+        cout << "*";
+      }
+      else
+        cout << " ";
     }
     cout << endl;
   }
