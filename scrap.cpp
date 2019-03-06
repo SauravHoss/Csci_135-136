@@ -1,25 +1,18 @@
-/*
-Author: Saurav Hossain
-Date: 02/26/19
-Prompt: Write a function that computes the balance of a bank account with a given initial balance and interest rate, after a given number of years. Assume interest is compounded yearly.
-*/
+// lab 6a 
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
+#include <string>
 using namespace std;
 
 int main() 
 {
-  double x, y, z, a;
-  cin >> x >> y >> z;
+  string s;
+  cin >> s;
 
-  a = x * pow((1 + (y/100)), z);
-  
-  cout << a << endl;
+  for(int i = 0; i < s.length(); i++)
+  {
+    cout << s[i] << " " << (int)s[i] << endl;
+  }
 
-  char c[64];
-  sprintf(c, "%.2lf\n", a);
-  double s = atof(c);
-
-  cout << s;
 }
+
+// lab 6b
