@@ -1,7 +1,7 @@
 /*
 Author: Saurav Hossain
 Assignment: Lab 6C
-Function: Write a program vigenere.cpp. It should contain a function encryptVigenere implementing this cipher: string encryptVigenere(string plaintext, string keyword); You may assume that the keyword contains only lowercase alphabetic characters a - z.
+Function: Write a program that should contain a function encryptVigenere implementing this cipher: string encryptVigenere(string plaintext, string keyword); You may assume that the keyword contains only lowercase alphabetic characters a - z.
 Date: 03/16/19
 Instructor: Panda
 File submission name: vigenere.cpp
@@ -46,7 +46,7 @@ char shiftChar(char c, int rshift)
   return r;
 }
 
-//encrypts in vigenere style
+//encrypts given text and a keyword
 string encryptVigenere(string plaintext, string keyword)
 {
 	string s = "";
