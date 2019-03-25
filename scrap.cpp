@@ -1,115 +1,57 @@
-// lab 6a 
+/*
+Author: Saurav Hossain
+Assignment: Lab 7A
+Function: Write a program that reads input from cin and prints out each input line with leading spaces removed.
+Date: 03/24/19
+Instructor: Panda
+File submission name: unindent.cpp
+*/
+
 #include <iostream>
+#include <cctype>
 #include <string>
+#include <fstream>
 using namespace std;
 
-int main() 
+//removes beginning space
+string removeLeadingSpaces(string line)
 {
-  string s;
-  cin >> s;
-
-  for(int i = 0; i < s.length(); i++)
-  {
-    cout << s[i] << " " << (int)s[i] << endl;
-  }
-
-}
-
-// lab 6b
-#include <iostream>
-#include <string>
-using namespace std;
-
-char shiftChar(char c, int rshift)
-{
-  char r;
-  if(isalpha(c))
-  {
-    if((int)c <= 122 && (int)c >= 97 )
+    int x = 0;
+    for (int i = 0; i < line.length(); i++)
     {
-      if(((int)c + rshift) > 122)
-      {
-        int x = ((int)c + rshift) - 122;
-        r = 96 + x;
-      } 
-      else
-        r = (int)c + rshift;
+        if (isspace(line[i]))
+        {
+            x++;
+        }
+        else
+        {
+            break;
+        }
     }
-    else if((int)c <= 90 && (int)c >= 65 )
-    {
-      if(((int)c + rshift) > 90)
-      {
-        int x = ((int)c + rshift) - 90;
-        r = 64 + x;
-      } 
-      else
-        r = (int)c + rshift;
-    }
-  }
-  else
-  {
-    r = c;
-  }
-  return r;
+    return line.substr(x);
 }
 
-string encryptCaesar(string plaintext, int rshift)
+int countChar(string line, char c)
 {
-  string s = "";
-  for(int i = 0; i < plaintext.length(); i++)
-  {
-    char c = plaintext[i];
-    s = s + shiftChar(c, rshift);
-  }
-  return s;
+	int x = 0;
+	for(int i = 0; i < line.length(); i++)
+	{
+		if(line[i] == c)
+		{
+			x++;
+		}
+	}
+	return x;
 }
 
-int main() 
+
+//main method
+int main()
 {
-//  cout << shiftChar('v', 7);
-  cout << encryptCaesar("Hello, World!", 10);
-}
-
-//lab 6c
-
-
-//loops upper and lower case
-char shiftChar(char c, int rshift)
-{
-  char r;
-  if((int)c <= 122 && (int)c >= 97 )
-  {
-    if(((int)c + rshift) > 122)
+    string s;
+    
+    while (getline(cin, s))
     {
-      int x = ((int)c + rshift) - 122;
-      r = 96 + x;
-    } 
-    else
-      r = (int)c + rshift;
-  }
-  else if((int)c <= 90 && (int)c >= 65 )
-  {
-    if(((int)c + rshift) > 90)
-    {
-      int x = ((int)c + rshift) - 90;
-      r = 64 + x;
-    } 
-    else
-      r = (int)c + rshift;
-  }
-  return r;
+        cout << removeLeadingSpaces(s) << endl;
+    }    
 }
-
-//hw
-
-void reverse(int arr[], int start, int end) 
-{ 
-  while (start < end) 
-  { 
-    int temp = arr[start];  
-    arr[start] = arr[end]; 
-    arr[end] = temp; 
-    start++; 
-    end--; 
-  }  
-}  
