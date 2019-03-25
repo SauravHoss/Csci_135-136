@@ -51,9 +51,7 @@ int main()
     string t;
     
     while (getline(cin, s))
-    {
-    	
-    	 	
+    { 	
     	//tab printer
 		for(int i = 0; i < countChar(s, '{'); i++)
 		{
@@ -61,10 +59,11 @@ int main()
 		}
 		for(int i = 0; i < countChar(s, '}'); i++)
 		{
-			t = t.substr(1);
-			
+			t = t.substr(t.length());
+			//cout << "flag";
 		}
 		cout << removeLeadingSpaces(s) << endl;
 		cout << t;       
+		//cout << countChar(s, '{') << countChar(s, '}');
     }    
 }
