@@ -44,14 +44,27 @@ int countChar(string line, char c)
 	return x;
 }
 
-
 //main method
 int main()
 {
     string s;
+    string t;
     
     while (getline(cin, s))
     {
-        cout << removeLeadingSpaces(s) << endl;
+    	
+    	 	
+    	//tab printer
+		for(int i = 0; i < countChar(s, '{'); i++)
+		{
+			t = t + '\t';
+		}
+		for(int i = 0; i < countChar(s, '}'); i++)
+		{
+			t = t.substr(1);
+			
+		}
+		cout << removeLeadingSpaces(s) << endl;
+		cout << t;       
     }    
 }
