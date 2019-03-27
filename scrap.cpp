@@ -1,69 +1,35 @@
 /*
 Author: Saurav Hossain
-Assignment: Lab 7A
-Function: Write a program that reads input from cin and prints out each input line with leading spaces removed.
-Date: 03/24/19
-Instructor: Panda
-File submission name: unindent.cpp
+Date: 01/30/19
+Prompt: Define a trivial class Triangle that contains three Point members. Write a function that computes the perimeter of a Triangle. Write a program that reads the coordinates of the points, calls your function, and displays the result.
 */
 
 #include <iostream>
-#include <cctype>
-#include <string>
-#include <fstream>
+
 using namespace std;
 
-//removes beginning space
-string removeLeadingSpaces(string line)
+class Point
 {
-    int x = 0;
-    for (int i = 0; i < line.length(); i++)
-    {
-        if (isspace(line[i]))
-        {
-            x++;
-        }
-        else
-        {
-            break;
-        }
-    }
-    return line.substr(x);
-}
+	
+	double x, y;
+	public: 
+		Point(x, y);
+};
 
-int countChar(string line, char c)
+class Triangle
 {
-	int x = 0;
-	for(int i = 0; i < line.length(); i++)
+	friend class Point;
+	public: 
+		Point x, y, z;
+	double computePerimeter( )
 	{
-		if(line[i] == c)
-		{
-			x++;
-		}
+			
 	}
-	return x;
-}
 
-//main method
+};
+
 int main()
 {
-    string s;
-    string t;
-    
-    while (getline(cin, s))
-    { 	
-    	//tab printer
-		for(int i = 0; i < countChar(s, '{'); i++)
-		{
-			t = t + '\t';
-		}
-		for(int i = 0; i < countChar(s, '}'); i++)
-		{
-			t = t.substr(t.length());
-			//cout << "flag";
-		}
-		cout << removeLeadingSpaces(s) << endl;
-		cout << t;       
-		//cout << countChar(s, '{') << countChar(s, '}');
-    }    
+	cout << "no error";
 }
+
