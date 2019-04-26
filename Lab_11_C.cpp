@@ -1,6 +1,6 @@
 /*
 Author: Saurav Hossain
-Assignment: Lab 11B
+Assignment: Lab 11C
 Function: Write a new program which is an improved version of the previous program.
 Date: 04/26/19
 Instructor: Panda
