@@ -1,54 +1,124 @@
+
+#include <cstdlib>
+#include <cmath>
 #include <iostream>
+#include "bot.h"
+
 using namespace std;
 
-class Circuit
-{
-  public:
-    int first_switch;
-    int second_switch;
-    int lamp;
+const int MAX_ROWS = 40;
+const int MAX_COLS = 40;
+const int MAX_NUM = 10;
 
-    int get_first_switch_state(); // 0 for down, 1 for up
-    int get_second_switch_state();
-    int get_lamp_state(); // 0 for off, 1 for on
-    void toggle_first_switch();
-    void toggle_second_switch();
-};
+int ROWS;  // global variables
+int COLS;
+int NUM;
 
-// 0 for down, 1 for up
-int Circuit:: get_first_switch_state()
-{
-  return first_switch;
-} 
+/* onStart: 
+An Initialization procedure called at the start of the game.
+You can use it to initialize certain global variables, or do 
+something else before the actual simulation starts.
+Parameters:
+    rows: number of rows
+    cols: number of columns
+    num:  number of dwarfs
+    log:  a cout-like log */
 
-int Circuit:: get_second_switch_state()
+void onStart(int rows, int cols, int num, std::ostream &log) 
 {
-  return second_switch;
+  log << "Start!" << endl; // Print a greeting message
+
+  ROWS = rows; // Save values in global variables
+  COLS = cols;
+  NUM = num;
 }
 
-// 0 for off, 1 for on
-int Circuit:: get_lamp_state()
+/*
+void lookWorld(int r, int c)
 {
-  return lamp;
-} 
+	for(int i = 0; i < MAX_ROWS; i++)
+    {
+    	for(int j = 0; j < MAX_COLS; j++)
+    	{
+    		if((dwarf.look(i , j) == PINE_TREE) || (dwarf.look(i , j) == APPLE_TREE))
+    		{
+    			r = i;
+    			c = j;
+    		}
+    	}
+    }
+}
+*/
 
-void Circuit:: toggle_first_switch()
+bool isNextToATree(Dwarf & dwarf, int r, int c)
 {
-  if(first_switch == 1)
-    first_switch = 0;
-  else 
-    first_switch = 1;
+	// Look if there is a tree on the right from the dwarf
+	if ((dwarf.look(r, c+1) == PINE_TREE) || (dwarf.look(r, c+1) == APPLE_TREE))
+	{
+    	// If there is a tree, chop it
+    	dwarf.start_chop(EAST);
+    	return true;
+    }
+    // Look if there is a tree on the left from the dwarf
+	else if ((dwarf.look(r, c-1) == PINE_TREE) || (dwarf.look(r, c-1) == APPLE_TREE))
+	{
+    	// If there is a tree, chop it
+    	dwarf.start_chop(WEST);
+    	return true;
+    }
+    // Look if there is a tree on the down from the dwarf
+	else if ((dwarf.look(r+1, c) == PINE_TREE) || (dwarf.look(r+1, c) == APPLE_TREE))
+	{
+    	// If there is a tree, chop it
+    	dwarf.start_chop(SOUTH);
+    	return true;
+    }
+    // Look if there is a tree on the up from the dwarf
+	else if ((dwarf.look(r-1, c) == PINE_TREE) || (dwarf.look(r-1, c) == APPLE_TREE))
+	{
+    	// If there is a tree, chop it
+    	dwarf.start_chop(NORTH);
+    	return true;
+    }
+    else
+    	return false;
 }
 
-void Circuit:: toggle_second_switch()
-{
-  if(second_switch == 1)
-    second_switch = 0;
-  else
-    second_switch = 1;
-}
 
-int main() 
+/* onAction: 
+A procedure called each time an idle dwarf is choosing 
+their next action.
+Parameters:
+    dwarf:   dwarf choosing an action
+    day:     day (1+)
+    hours:   number of hours in 24-hour format (0-23)
+    minutes: number of minutes (0-59)
+    log:     a cout-like log  */
+
+void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log) 
 {
+  // Get current position of the dwarf
+  int r = dwarf.row();
+  int c = dwarf.col();
   
+  if(isNextToATree(dwarf, r, c))
+  {
+  	log << "Found a tree -- chop" << endl;
+  	return;
+  }
+  
+  else 
+  {
+  
+  	//make non random
+    // Otherwise, move to a random location
+    int rr = rand() % ROWS;
+    int cc = rand() % COLS;
+    
+      
+    log << "Walk to " << rr << " " << cc << endl;
+    dwarf.start_walk(rr, cc);
+    return;
+  }
 }
+
