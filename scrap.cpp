@@ -195,4 +195,4 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log)
     return;
   }
 }
-
+ 
