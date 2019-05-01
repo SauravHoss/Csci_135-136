@@ -1,6 +1,6 @@
-
 #include <cstdlib>
 #include <cmath>
+#include <tuple>
 #include <iostream>
 #include "bot.h"
 
@@ -13,6 +13,7 @@ const int MAX_NUM = 10;
 int ROWS;  // global variables
 int COLS;
 int NUM;
+//int MAP[MAX_ROWS][MAX_COLS];
 
 /* onStart: 
 An Initialization procedure called at the start of the game.
@@ -34,7 +35,8 @@ void onStart(int rows, int cols, int num, std::ostream &log)
 }
 
 /*
-void lookWorld(int r, int c)
+//get the entire map
+void lookWorld(Dwarf & dwarf, int r, int c)
 {
 	for(int i = 0; i < MAX_ROWS; i++)
     {
@@ -42,13 +44,83 @@ void lookWorld(int r, int c)
     	{
     		if((dwarf.look(i , j) == PINE_TREE) || (dwarf.look(i , j) == APPLE_TREE))
     		{
-    			r = i;
-    			c = j;
+    			MAP[i][j] = 1;
     		}
+    		else 
+    			MAP[i][j] = 0;
     	}
     }
 }
 */
+
+void findNextTree(Dwarf & dwarf, int r, int c, ostream &log, int range)
+{
+	if(range + r >= MAX_ROWS || range + c >= MAX_COLS || r - range <= 0 || c - range <=0)
+	{
+		range = 2;
+		dwarf.start_walk((rand() % ROWS), (rand() % COLS));	
+	}
+
+	if((dwarf.look(r, c+range) == PINE_TREE) || (dwarf.look(r, c+range) == APPLE_TREE))
+	{
+		if(dwarf.look(r, c+(range -1)) == EMPTY)
+        {    
+  	      	log << "LOOKING" << "RANGE: " << range << endl;
+            dwarf.start_walk(r, c+(range - 1));
+        }
+        else
+   		{
+   			log << "SOMETHING BAD IS HAPPENING!" << endl;
+        	findNextTree(dwarf, r, c, log, range + 1);    
+    	} 
+	}
+	else if((dwarf.look(r, c-range) == PINE_TREE) || (dwarf.look(r, c-range) == APPLE_TREE))
+	{
+	
+		if(dwarf.look(r, c-(range -1)) == EMPTY)
+        {    
+			log << "LOOKING" << "RANGE: " << range << endl;
+            dwarf.start_walk(r, c-(range - 1));
+        }
+        else
+   		{
+   			log << "SOMETHING BAD IS HAPPENING!" << endl;
+        	findNextTree(dwarf, r, c, log, range + 1);    
+    	} 	
+	}
+	else if((dwarf.look(r+range, c) == PINE_TREE) || (dwarf.look(r+range, c) == APPLE_TREE))
+	{
+		if(dwarf.look(r+(range -1), c) == EMPTY)
+        {    
+			log << "LOOKING" << "RANGE: " << range << endl;
+			dwarf.start_walk(r+(range - 1), c);		
+        }
+        else
+   		{
+   			log << "SOMETHING BAD IS HAPPENING!" << endl;
+        	findNextTree(dwarf, r, c, log, range + 1);    
+    	}
+	}
+	else if((dwarf.look(r-range, c) == PINE_TREE) || (dwarf.look(r-range, c) == APPLE_TREE))
+	{
+	
+		if(dwarf.look(r-(range -1), c) == EMPTY)
+        {    
+			log << "LOOKING" << "RANGE: " << range << endl;
+			dwarf.start_walk(r-(range - 1), c);
+        }
+        else
+   		{
+   			log << "SOMETHING BAD IS HAPPENING!" << endl;
+        	findNextTree(dwarf, r, c, log, range + 1);    
+    	}	
+	}
+	else
+	{
+		findNextTree(dwarf, r, c, log, range + 1);	
+	}	
+	
+}
 
 bool isNextToATree(Dwarf & dwarf, int r, int c)
 {
@@ -84,7 +156,6 @@ bool isNextToATree(Dwarf & dwarf, int r, int c)
     	return false;
 }
 
-
 /* onAction: 
 A procedure called each time an idle dwarf is choosing 
 their next action.
@@ -109,15 +180,18 @@ void onAction(Dwarf &dwarf, int day, int hours, int minutes, ostream &log)
   
   else 
   {
-  
+  findNextTree(dwarf, r, c, log, 2);
+  log << "Walk to " << r << " " << c << endl;
+
+  /*
   	//make non random
     // Otherwise, move to a random location
     int rr = rand() % ROWS;
     int cc = rand() % COLS;
     
       
-    log << "Walk to " << rr << " " << cc << endl;
     dwarf.start_walk(rr, cc);
+    */
     return;
   }
 }
